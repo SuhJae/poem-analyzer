@@ -15,7 +15,7 @@ Analyze the structure of poems, from syllable count to identifying poetic forms.
 - **Milestone #1** - [✅ Completed on 2023/9/13](https://github.com/SuhJae/poem-analyzer/commit/1dbe474f798d4e10f29f3d055d7630d1044f5f9c)
     - Determine the number of syllables in a single word.
 
-- **Milestone #2**
+- **Milestone #2** [✅ Completed on 2023/9/18](https://github.com/SuhJae/poem-analyzer/commit/4ae127f92c946798b2182fca45bd7c1587241f8b)
     - Analyze a full sentence to calculate its syllable count.
 
 - **Milestone #3**
