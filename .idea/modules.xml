@@ -2,7 +2,7 @@
 <project version="4">
   <component name="ProjectModuleManager">
     <modules>
-      <module fileurl="file://$PROJECT_DIR$/csA.iml" filepath="$PROJECT_DIR$/csA.iml" />
+      <module fileurl="file://$PROJECT_DIR$/poem-analyzer.iml" filepath="$PROJECT_DIR$/poem-analyzer.iml" />
     </modules>
   </component>
 </project>

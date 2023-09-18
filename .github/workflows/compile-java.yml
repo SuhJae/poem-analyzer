@@ -1,0 +1,30 @@
+name: Compile Java Project
+
+on:
+  push:
+    branches:
+      - main
+  pull_request:
+    branches:
+      - main
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up JDK
+        uses: actions/setup-java@v2
+        with:
+          distribution: 'adopt'
+          java-version: '11'
+
+      - name: Compile Java Code
+        run: |
+          mkdir -p out/production/poem-analyzer
+          javac -d out/production/poem-analyzer src/Main.java
+
+      - name: List compiled files
+        run: ls -R out/production/poem-analyzer
