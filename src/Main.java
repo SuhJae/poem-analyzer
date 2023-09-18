@@ -6,20 +6,34 @@
  * @ version 1.0 Sep 13, 2023
  */
 
+import java.util.Objects;
 import java.util.Scanner;
-
 
 class Main {
     public static void main(String[] args) {
         Scanner input = new Scanner(System.in);
-        String word = input.nextLine();
 
-        // =============== Identify The Syllable In a Word ===============
-        int syllableCount = 0;
+        String line = input.nextLine();
 
-//        if (word.length() == 1) { // This is here to prevent out of bound error.
-//            syllableCount = 1; // if the word is only one character, it is automatically one syllable.
-//        } else {
+        // =============== Identify The Syllable In a full sentence ===============
+        int syllableCountInSentence = 0;
+        String word = "";
+
+        while (!line.isEmpty()) {
+            int spaceIndex = line.indexOf(" ");
+
+            if (spaceIndex != -1) {
+                word = line.substring(0, spaceIndex);
+                line = line.substring(spaceIndex + 1);
+            } else {
+                word = line;
+                line = "";
+            }
+
+
+            // =============== Identify The Syllable In a Word ===============
+            int syllableCount = 0;
+
             // count the number of the vowels.
             boolean lastCharIsVowel = false;
 
@@ -43,19 +57,27 @@ class Main {
             // check if the word ends with: le, les, and the letter before the “le” is a consonant
             if (word.length() >= 3) {
                 String lastThree = word.substring(word.length() - 3); // get last three characters
-                char beforeLe = lastThree.charAt(0); // get the letter before 'le'
-                if (lastThree.endsWith("le") && "aeiou".indexOf(beforeLe) == -1) {
+                char beforeSuffix = lastThree.charAt(0); // get the letter before two last characters
+                if (lastThree.endsWith("le") && "aeiou".indexOf(beforeSuffix) == -1) {
                     syllableCount++;
                 }
+                // check if it ends with ed. If so, check if before ed, t or d. If not, subtract 1 from the syllable count.
+                if (lastThree.endsWith("ed") && ("td".indexOf(beforeSuffix) == -1)) {
+                    syllableCount--;
+                }
+
             }
 
             // check if syllable count is 0, then it is 1. for the word that has no vowel or other special cases
             if (syllableCount == 0) {
                 syllableCount = 1;
             }
-//        }
-        System.out.println("The number of syllables in the word " + word + " is " + syllableCount);
-        // =============== Identify The Syllable In a Word ===============
+            // ============================================================================
+
+            syllableCountInSentence += syllableCount;
+        }
+
+        System.out.println(syllableCountInSentence);
 
         input.close();
     }
