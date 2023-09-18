@@ -14,7 +14,6 @@ class Main {
         Scanner input = new Scanner(System.in);
         String word = input.nextLine();
 
-
         // =============== Identify The Syllable In a Word ===============
         int syllableCount = 0;
 
