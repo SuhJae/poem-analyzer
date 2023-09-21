@@ -6,7 +6,6 @@
  * @ version 1.0 Sep 13, 2023
  */
 
-import java.util.Objects;
 import java.util.Scanner;
 
 class Main {
@@ -101,17 +100,17 @@ class Main {
         String cinquainLines = "2-4-6-8-2-";
         String nonetLines = "9-8-7-6-5-4-3-2-1-";
 
-        if (lineCount == 3) { // check for haiku vs sanjo
+        if (lineCount == 3) { // check for haiku vs sijo
             double haikuPercentageError = 0;
-            double sanjoPercentageError = 0;
+            double sijoPercentageError = 0;
 
             int thisLineSyllable = Integer.parseInt(syllablePerLine.substring(0, syllablePerLine.indexOf("-")));
             int thisHaikuLineSyllable = Integer.parseInt(haikuLines.substring(0, haikuLines.indexOf("-")));
-            int thisSanjoLineSyllable = Integer.parseInt(sijoLines.substring(0, sijoLines.indexOf("-")));
+            int thissijoLineSyllable = Integer.parseInt(sijoLines.substring(0, sijoLines.indexOf("-")));
 
             for (int i = 0; i < 2; i++) {
                 haikuPercentageError += Math.abs((double) (thisLineSyllable - thisHaikuLineSyllable) / thisHaikuLineSyllable * 100);
-                sanjoPercentageError += Math.abs((double) (thisLineSyllable - thisSanjoLineSyllable) / thisSanjoLineSyllable * 100);
+                sijoPercentageError += Math.abs((double) (thisLineSyllable - thissijoLineSyllable) / thissijoLineSyllable * 100);
 
                 syllablePerLine = syllablePerLine.substring(syllablePerLine.indexOf("-") + 1);
                 haikuLines = haikuLines.substring(haikuLines.indexOf("-") + 1);
@@ -119,16 +118,16 @@ class Main {
 
                 thisLineSyllable = Integer.parseInt(syllablePerLine.substring(0, syllablePerLine.indexOf("-")));
                 thisHaikuLineSyllable = Integer.parseInt(haikuLines.substring(0, haikuLines.indexOf("-")));
-                thisSanjoLineSyllable = Integer.parseInt(sijoLines.substring(0, sijoLines.indexOf("-")));
+                thissijoLineSyllable = Integer.parseInt(sijoLines.substring(0, sijoLines.indexOf("-")));
             }
 
             haikuPercentageError = (double) Math.round((haikuPercentageError / 3 * 100)) / 100;
-            sanjoPercentageError = (double) Math.round((sanjoPercentageError / 3 * 100)) / 100;
+            sijoPercentageError = (double) Math.round((sijoPercentageError / 3 * 100)) / 100;
 
             System.out.println("Haiku percentage error: " + haikuPercentageError + "%");
-            System.out.println("Sanjo percentage error: " + sanjoPercentageError + "%\n");
+            System.out.println("sijo percentage error: " + sijoPercentageError + "%\n");
 
-            if (haikuPercentageError < sanjoPercentageError) {
+            if (haikuPercentageError < sijoPercentageError) {
                 System.out.println("This is most likely a Haiku.");
             } else {
                 System.out.println("This is most likely a Sanjo.");
