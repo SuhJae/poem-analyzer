@@ -134,7 +134,7 @@ class Main {
 			if (haikuPercentageError < sijoPercentageError) {
 				System.out.println("This is most likely a Haiku.");
 			} else {
-				System.out.println("This is most likely a Sanjo.");
+				System.out.println("This is most likely a Sijo.");
 			}
 			// check for tanka vs cinquain
 		} else if (lineCount == 5) { 
