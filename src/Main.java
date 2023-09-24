@@ -10,6 +10,7 @@ import java.util.Scanner;
 
 class Main {
     public static void main(String[] args) {
+        // =============== Initialize variables ===============
         Scanner input = new Scanner(System.in);
         String line = "";
         String syllablePerLine = "";
@@ -20,13 +21,10 @@ class Main {
 
         while (true) {
             line = input.nextLine();
-
             if (line.equals("quit")) {
                 break;
             }
-
             lineCount++;
-
             // =============== Identify The Syllable In a full sentence ===============
             int syllableCountInSentence = 0;
             String word = "";
@@ -88,6 +86,8 @@ class Main {
             totalSyllable += syllableCountInSentence;
         }
 
+        // =============== Print out the result ===============
+
         System.out.println("Total lines in the poem: " + lineCount);
         System.out.println("Total syllables in the poem: " + totalSyllable);
         System.out.println("Syllables per line: " + syllablePerLine.substring(0, syllablePerLine.length() - 1));
@@ -108,6 +108,7 @@ class Main {
             int thisHaikuLineSyllable = Integer.parseInt(haikuLines.substring(0, haikuLines.indexOf("-")));
             int thissijoLineSyllable = Integer.parseInt(sijoLines.substring(0, sijoLines.indexOf("-")));
 
+            // Check for haiku vs sijo by comparing the percentage error of syllable count each line.
             for (int i = 0; i < 2; i++) {
                 haikuPercentageError += Math.abs((double) (thisLineSyllable - thisHaikuLineSyllable) / thisHaikuLineSyllable * 100);
                 sijoPercentageError += Math.abs((double) (thisLineSyllable - thissijoLineSyllable) / thissijoLineSyllable * 100);
@@ -127,6 +128,7 @@ class Main {
             System.out.println("Haiku percentage error: " + haikuPercentageError + "%");
             System.out.println("sijo percentage error: " + sijoPercentageError + "%\n");
 
+            // pridiect the type of poem based on the percentage error.
             if (haikuPercentageError < sijoPercentageError) {
                 System.out.println("This is most likely a Haiku.");
             } else {
@@ -140,6 +142,7 @@ class Main {
             int thisTankaLineSyllable = Integer.parseInt(tankaLines.substring(0, tankaLines.indexOf("-")));
             int thisCinquainLineSyllable = Integer.parseInt(cinquainLines.substring(0, cinquainLines.indexOf("-")));
 
+            // Check for tanka vs cinquain by comparing the percentage error of syllable count each line.
             for (int i = 0; i < 4; i++) {
                 tankaPercentageError += Math.abs((double) (thisLineSyllable - thisTankaLineSyllable) / thisTankaLineSyllable * 100);
                 cinquainPercentageError += Math.abs((double) (thisLineSyllable - thisCinquainLineSyllable) / thisCinquainLineSyllable * 100);
@@ -159,17 +162,17 @@ class Main {
             System.out.println("Tanka percentage error: " + tankaPercentageError + "%");
             System.out.println("Cinquain percentage error: " + cinquainPercentageError + "%\n");
 
+            // pridiect the type of poem based on the percentage error.
             if (tankaPercentageError < cinquainPercentageError) {
                 System.out.println("This is most likely a Tanka.");
             } else {
                 System.out.println("This is most likely a Cinquain.");
             }
-        } else if (lineCount == 9){
+        } else if (lineCount == 9) { // since nonet is the only poem with 9 lines, we don't have to compare it with other poems.
             System.out.println("This is most likely a Nonet.");
         } else {
             System.out.println("Unknown type of poem.");
         }
-
 
         input.close();
     }
